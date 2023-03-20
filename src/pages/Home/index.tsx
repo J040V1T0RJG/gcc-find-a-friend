@@ -1,20 +1,14 @@
 import {
   Container,
   Filter,
-  FilterInputCity,
-  FilterInputOptionCity,
-  FilterInputOptionState,
-  FilterInputState,
-  FilterWrapperCity,
-  FilterWrapperState,
   FooterStyled,
   HeaderStyled,
   MainStyled,
 } from './styles'
 import logoImage from '@/assets/icons/logo.svg'
 import bannerDogImage from '@/assets/images/banner.svg'
-import chevronImage from '@/assets/icons/chevron-bottom.svg'
 import searchImage from '@/assets/icons/search.svg'
+import { SelectCity, SelectState } from '@/components/Select'
 
 type Options = {
   value: string | number
@@ -69,44 +63,8 @@ export function Home() {
         </h3>
         <Filter>
           <label htmlFor="">Busque um amigo:</label>
-          <FilterWrapperState>
-            <FilterInputState>
-              <FilterInputOptionState value="" disabled selected>
-                SP
-              </FilterInputOptionState>
-              {options.map((option) => {
-                return (
-                  <FilterInputOptionState
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </FilterInputOptionState>
-                )
-              })}
-            </FilterInputState>
-            <img src={chevronImage} alt="" />
-          </FilterWrapperState>
-
-          <FilterWrapperCity>
-            <FilterInputCity>
-              <FilterInputOptionCity value="" disabled selected>
-                Recife
-              </FilterInputOptionCity>
-              {options.map((option) => {
-                return (
-                  <FilterInputOptionCity
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </FilterInputOptionCity>
-                )
-              })}
-            </FilterInputCity>
-            <img src={chevronImage} alt="" />
-          </FilterWrapperCity>
-
+          <SelectState label={''} name={''} options={[]} />
+          <SelectCity label={''} name={''} options={[]} />
           <button>
             <img src={searchImage} alt="" />
           </button>

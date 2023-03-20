@@ -29,7 +29,7 @@ export const FilterInput = styled.select`
   font-size: 16px;
   line-height: 19.2px;
   font-weight: 800;
-  color: #ffffff;
+  color: ${(props) => props.theme.white};
   background-color: #f75f64;
   border-radius: 15px;
   border: none;
@@ -37,13 +37,14 @@ export const FilterInput = styled.select`
   padding: 20px;
   appearance: none;
   position: relative;
+  cursor: pointer;
 
   &::before {
     content: '⌄';
     width: 12px;
     height: 6px;
     display: absolute;
-    color: #ffffff;
+    color: ${(props) => props.theme.white};
   }
 `
 
@@ -52,6 +53,39 @@ export const FilterInputOption = styled.option`
   font-size: 14px;
   line-height: 16px;
   font-weight: 500;
-  color: #ffffff;
+  color: ${(props) => props.theme.white};
   padding: 5px 7px;
+`
+
+export const FilterWrapperState = styled(FilterWrapper)`
+  & > img {
+    width: 8px;
+    position: absolute;
+    right: 12px;
+  }
+`
+
+export const FilterInputState = styled(FilterInput)`
+  width: 72px;
+  height: 72px;
+  background-color: ${(props) => props.theme.carnation};
+  border: 1px solid ${(props) => props.theme.white};
+  border-radius: 20px;
+  padding: 20px;
+`
+
+export const FilterWrapperCity = styled(FilterWrapper)`
+  & > img {
+    width: 8px;
+    position: absolute;
+    right: 15%;
+  }
+`
+
+export const FilterInputCity = styled(FilterInput)`
+  width: 280px;
+  height: 72px;
+  text-align: center;
+  background-color: ${(props) => props.theme.cinnabar};
+  border-radius: 20px;
 `

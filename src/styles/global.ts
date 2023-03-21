@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -8,7 +8,9 @@ export default createGlobalStyle`
   }
 
   body {
-    color: #FFFFFF;
+    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme.carnation};
+    -webkit-font-smoothing: antialiased;
   }
 
   button {

@@ -1,14 +1,21 @@
 import { Router } from './routes'
 import { BrowserRouter } from 'react-router-dom'
-import GlobalStyles from './styles/global'
+import { GlobalStyle } from './styles/global'
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from './styles/themes/default'
+import { PetsProvider } from './contexts/PetsContext'
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-      <GlobalStyles />
+      <ThemeProvider theme={defaultTheme}>
+        <PetsProvider>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </PetsProvider>
+        <GlobalStyle />
+      </ThemeProvider>
     </>
   )
 }

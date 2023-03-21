@@ -53,6 +53,7 @@ export const FilterInputOption = styled.option`
   font-size: 14px;
   line-height: 16px;
   font-weight: 500;
+  background: ${(props) => props.theme.carnation};
   color: ${(props) => props.theme.white};
   padding: 5px 7px;
 `
@@ -68,7 +69,7 @@ export const FilterWrapperState = styled(FilterWrapper)`
 export const FilterInputState = styled(FilterInput)`
   width: 72px;
   height: 72px;
-  background-color: ${(props) => props.theme.carnation};
+  background-color: transparent;
   border: 1px solid ${(props) => props.theme.white};
   border-radius: 20px;
   padding: 20px;
@@ -87,5 +88,6 @@ export const FilterInputCity = styled(FilterInput)`
   height: 72px;
   text-align: center;
   background-color: ${(props) => props.theme.cinnabar};
+  border: 1px solid ${(props) => props.theme.carnation};
   border-radius: 20px;
 `

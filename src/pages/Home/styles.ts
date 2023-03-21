@@ -63,5 +63,9 @@ export const Filter = styled.div`
     background: ${(props) => props.theme['yellow-dark']};
     border-radius: 20px;
     border: none;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `

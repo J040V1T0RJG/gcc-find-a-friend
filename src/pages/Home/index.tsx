@@ -7,23 +7,14 @@ import {
 } from './styles'
 import logoImage from '@/assets/icons/logo.svg'
 import bannerDogImage from '@/assets/images/banner.svg'
-import searchImage from '@/assets/icons/search.svg'
 import { SelectCity, SelectState } from '@/components/Select'
 import { useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
 import { useNavigate } from 'react-router-dom'
+import { ButtonSearch } from '@/components/Button'
 
 export function Home() {
-  const navigate = useNavigate()
-  const { brazilianStates, cities, location, fetchPets } =
-    useContext(PetsContext)
-
-  function handleSearchPets() {
-    fetchPets({})
-    navigate('/map')
-  }
-
-  const buttonEnable = !(location.brazilianState && location.city)
+  const { brazilianStates, cities } = useContext(PetsContext)
 
   return (
     <Container>
@@ -47,9 +38,7 @@ export function Home() {
           <label htmlFor="">Busque um amigo:</label>
           <SelectState name={''} options={brazilianStates} />
           <SelectCity name={''} options={cities} />
-          <button disabled={buttonEnable} onClick={handleSearchPets}>
-            <img src={searchImage} alt="" />
-          </button>
+          <ButtonSearch />
         </Filter>
       </FooterStyled>
     </Container>

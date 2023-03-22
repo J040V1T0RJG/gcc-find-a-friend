@@ -30,7 +30,7 @@ interface Pet {
   energy: number
   size: string
   independence: string
-  type: string
+  type: 'dog' | 'cat'
   photo: string
   orgId: string
   photo_url: string

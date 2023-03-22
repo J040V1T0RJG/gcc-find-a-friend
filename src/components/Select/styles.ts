@@ -76,15 +76,16 @@ export const FilterInputState = styled(FilterInput)`
 `
 
 export const FilterWrapperCity = styled(FilterWrapper)`
+  width: 100%;
   & > img {
     width: 8px;
     position: absolute;
-    right: 15%;
+    right: 10%;
   }
 `
 
 export const FilterInputCity = styled(FilterInput)`
-  width: 280px;
+  width: 100%;
   height: 72px;
   text-align: center;
   background-color: ${(props) => props.theme.cinnabar};

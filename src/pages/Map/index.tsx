@@ -12,8 +12,11 @@ import {
   HeaderSelect,
   Display,
 } from './styles'
+import { useContext } from 'react'
+import { PetsContext } from '@/contexts/PetsContext'
 
 export function Map() {
+  const { pets } = useContext(PetsContext)
   function handleFilterByPetType() {
     // TO DO
   }
@@ -37,6 +40,17 @@ export function Map() {
           </SelectWrapper>
         </Header>
         <Display>
+          {pets.length > 0 &&
+            pets.map((pet) => {
+              return (
+                <Card
+                  key={pet.id}
+                  path={pet.photo_url}
+                  type={pet.type}
+                  name={pet.name}
+                />
+              )
+            })}
           <Card path={dog} type="dog" name="Alfredo" />
           <Card path={dog} type="cat" name="Tobia" />
           <Card path={dog} type="dog" name="Alfredo" />

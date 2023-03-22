@@ -1,4 +1,4 @@
-import { Select } from '@/components/Select'
+import { Select, SelectCity, SelectState } from '@/components/Select'
 
 import logo from '@/assets/icons/logo.svg'
 import search from '@/assets/icons/search.svg'
@@ -11,6 +11,9 @@ import {
   ContentHeader,
   ContentFilters,
 } from './styles'
+import { useContext } from 'react'
+import { PetsContext } from '@/contexts/PetsContext'
+import { ButtonSearch } from '../Button'
 
 const ageOptions = [
   {
@@ -78,6 +81,8 @@ const independencyOptions = [
 ]
 
 export function Aside() {
+  const { brazilianStates, cities } = useContext(PetsContext)
+
   function handleSearchPets() {
     // TO DO
   }
@@ -92,10 +97,9 @@ export function Aside() {
         <div>
           <img src={logo} alt="" />
           <HeaderInput>
-            <input type="text" placeholder="Insira uma cidade" />
-            <button>
-              <img src={search} alt="ícone de lupa" />
-            </button>
+            <SelectState name={''} options={brazilianStates} />
+            <SelectCity name={''} options={cities} />
+            <ButtonSearch />
           </HeaderInput>
         </div>
       </AsideHeader>

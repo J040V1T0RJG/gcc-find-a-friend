@@ -44,11 +44,13 @@ export const FooterStyled = styled.footer`
 
 export const Filter = styled.div`
   display: flex;
+  width: 624px;
   flex-direction: row;
   align-items: center;
   gap: 20px;
 
   label {
+    min-width: max-content;
     line-height: 34px;
   }
 
@@ -57,7 +59,7 @@ export const Filter = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 72px;
+    min-width: 72px;
     height: 72px;
 
     background: ${(props) => props.theme['yellow-dark']};
@@ -66,6 +68,10 @@ export const Filter = styled.div`
 
     &:disabled {
       cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      filter: brightness(0.9);
     }
   }
 `

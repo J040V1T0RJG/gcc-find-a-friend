@@ -10,7 +10,6 @@ import bannerDogImage from '@/assets/images/banner.svg'
 import { SelectCity, SelectState } from '@/components/Select'
 import { useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
-import { useNavigate } from 'react-router-dom'
 import { ButtonSearch } from '@/components/Button'
 
 export function Home() {

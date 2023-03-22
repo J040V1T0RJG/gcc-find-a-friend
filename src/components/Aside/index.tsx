@@ -1,8 +1,5 @@
 import { Select, SelectCity, SelectState } from '@/components/Select'
-
 import logo from '@/assets/icons/logo.svg'
-import search from '@/assets/icons/search.svg'
-
 import {
   Container,
   AsideHeader,
@@ -11,7 +8,7 @@ import {
   ContentHeader,
   ContentFilters,
 } from './styles'
-import { useContext } from 'react'
+import { ChangeEvent, useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
 import { ButtonSearch } from '../Button'
 
@@ -81,14 +78,16 @@ const independencyOptions = [
 ]
 
 export function Aside() {
-  const { brazilianStates, cities } = useContext(PetsContext)
+  const { brazilianStates, cities, setSubFilter, fetchPets } =
+    useContext(PetsContext)
 
-  function handleSearchPets() {
-    // TO DO
-  }
+  function handleChangeSearchFilters(event: ChangeEvent<HTMLFormElement>) {
+    const { name, value } = event.target
 
-  function handleChangeSearchFilters() {
-    // TO DO
+    setSubFilter((state) => {
+      return { ...state, [name]: value }
+    })
+    fetchPets()
   }
 
   return (
@@ -105,7 +104,7 @@ export function Aside() {
       </AsideHeader>
       <AsideContent>
         <ContentHeader>Filtros</ContentHeader>
-        <ContentFilters>
+        <ContentFilters onChange={handleChangeSearchFilters}>
           <Select name="age" label="Idade" options={ageOptions} />
 
           <Select

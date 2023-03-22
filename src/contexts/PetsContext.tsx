@@ -13,12 +13,12 @@ interface PetsProviderProps {
   children: ReactNode
 }
 
-interface QuerysProps {
+interface SubFilter {
   age?: 'cub' | 'adolescent' | 'elderly'
   energy?: 1 | 2 | 3 | 4 | 5
   independence?: 'low' | 'medium' | 'high'
   size?: 'small' | 'medium' | 'big'
-  type?: string
+  type?: 'dog' | 'cat' | 'all'
 }
 
 interface Pet {
@@ -30,7 +30,7 @@ interface Pet {
   energy: number
   size: string
   independence: string
-  type: 'dog' | 'cat'
+  type: 'dog' | 'cat' | 'all'
   photo: string
   orgId: string
   photo_url: string
@@ -63,7 +63,8 @@ interface PetsContextType {
   cities: City[]
   location: Location
   fetchCities: (UF: string) => Promise<void>
-  fetchPets: (querys: QuerysProps) => Promise<void>
+  fetchPets: () => Promise<void>
+  setSubFilter: Dispatch<SetStateAction<SubFilter>>
   setLocation: Dispatch<SetStateAction<Location>>
 }
 
@@ -73,6 +74,7 @@ export function PetsProvider({ children }: PetsProviderProps) {
   const [brazilianStates, setBrazilianStates] = useState<BrazilianState[]>([])
   const [cities, setCities] = useState<City[]>([])
   const [pets, setPets] = useState<Pet[]>([])
+  const [subFilter, setSubFilter] = useState<SubFilter>({})
   const [location, setLocation] = useState<Location>({
     brazilianState: null,
     city: null,
@@ -92,21 +94,19 @@ export function PetsProvider({ children }: PetsProviderProps) {
     setCities(response.data.citys)
   }, [])
 
-  const fetchPets = useCallback(
-    async (querys: QuerysProps) => {
-      const response = await api.get(`/pets/${location.city}`, {
-        params: {
-          age: querys?.age,
-          energy: querys?.energy,
-          independence: querys?.independence,
-          size: querys?.size,
-          type: querys?.type,
-        },
-      })
-      setPets(response.data.pets)
-    },
-    [location],
-  )
+  const fetchPets = useCallback(async () => {
+    const response = await api.get(`/pets/São Paulo`, {
+      params: {
+        age: subFilter?.age,
+        energy: subFilter?.energy,
+        independence: subFilter?.independence,
+        size: subFilter?.size,
+        type: subFilter?.type,
+      },
+    })
+    console.log('fetchPets =>', response.data.pets)
+    setPets(response.data.pets)
+  }, [subFilter])
 
   return (
     <PetsContext.Provider
@@ -117,6 +117,7 @@ export function PetsProvider({ children }: PetsProviderProps) {
         location,
         fetchCities,
         fetchPets,
+        setSubFilter,
         setLocation,
       }}
     >

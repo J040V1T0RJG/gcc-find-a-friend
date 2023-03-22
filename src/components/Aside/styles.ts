@@ -44,7 +44,7 @@ export const HeaderInput = styled.div`
     }
   } */
 
-  button {
+  /* button {
     min-width: 72px;
     height: 72px;
     display: flex;
@@ -63,7 +63,7 @@ export const HeaderInput = styled.div`
     :hover {
       filter: brightness(0.9);
     }
-  }
+  } */
 `
 
 export const AsideContent = styled.div`
@@ -80,7 +80,7 @@ export const ContentHeader = styled.h1`
   margin-bottom: 27px;
 `
 
-export const ContentFilters = styled.div`
+export const ContentFilters = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;

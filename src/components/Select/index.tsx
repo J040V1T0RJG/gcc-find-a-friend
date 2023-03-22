@@ -56,7 +56,10 @@ export function SelectState({
 
   function handleChangeState(event: ChangeEvent<HTMLSelectElement>) {
     setLocation((state) => {
-      return { ...state, brazilianState: event.target.value }
+      return {
+        ...state,
+        brazilianState: event.target.value,
+      }
     })
     fetchCities(event.target.value)
   }
@@ -92,7 +95,10 @@ export function SelectCity({
 
   function handleChangeCity(event: ChangeEvent<HTMLSelectElement>) {
     setLocation((state) => {
-      return { ...state, city: event.target.value }
+      return {
+        ...state,
+        city: event.target.value,
+      }
     })
   }
 

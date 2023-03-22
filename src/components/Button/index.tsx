@@ -6,10 +6,11 @@ import { ButtonSearchContainer } from './styles'
 
 export function ButtonSearch() {
   const navigate = useNavigate()
-  const { location, fetchPets } = useContext(PetsContext)
+  const { location, fetchPets, setSubFilter } = useContext(PetsContext)
 
   function handleSearchPets() {
-    fetchPets({})
+    fetchPets()
+    setSubFilter({})
     navigate('/map')
   }
 

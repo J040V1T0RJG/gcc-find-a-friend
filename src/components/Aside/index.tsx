@@ -1,3 +1,5 @@
+import { ChangeEvent, useContext } from 'react'
+
 import { Select, SelectCity, SelectState } from '@/components/Select'
 import logo from '@/assets/icons/logo.svg'
 import {
@@ -8,7 +10,6 @@ import {
   ContentHeader,
   ContentFilters,
 } from './styles'
-import { ChangeEvent, useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
 import { ButtonSearch } from '../Button'
 
@@ -85,9 +86,11 @@ export function Aside() {
     const { name, value } = event.target
 
     setSubFilter((state) => {
-      return { ...state, [name]: value }
+      const subFilter = { ...state, [name]: value }
+
+      fetchPets(subFilter)
+      return subFilter
     })
-    fetchPets()
   }
 
   return (

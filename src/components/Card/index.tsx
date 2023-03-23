@@ -1,5 +1,4 @@
 import logo from '@/assets/icons/logo.svg'
-
 import { Container, Name, PetImage, TypeIcon } from './styles'
 
 type CardProps = {

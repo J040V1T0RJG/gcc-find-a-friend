@@ -1,6 +1,7 @@
+import { ChangeEvent, ComponentProps, useContext } from 'react'
+
 import chevronImage from '@/assets/icons/chevron-bottom.svg'
 import { BrazilianState, City, PetsContext } from '@/contexts/PetsContext'
-import { ChangeEvent, ComponentProps, useContext } from 'react'
 import {
   Filter,
   FilterLabel,

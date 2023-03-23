@@ -1,8 +1,8 @@
+import { ChangeEvent, useContext } from 'react'
+
 import { Aside } from '~/Aside'
 import { Card } from '~/Card'
-
 import chevron from '@/assets/icons/chevron-bottom-blue.svg'
-
 import {
   Container,
   Content,
@@ -11,7 +11,6 @@ import {
   HeaderSelect,
   Display,
 } from './styles'
-import { ChangeEvent, useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
 
 export function Map() {
@@ -19,10 +18,11 @@ export function Map() {
 
   function handleFilterByPetType(event: ChangeEvent<HTMLSelectElement>) {
     setSubFilter((state) => {
-      return { ...state, type: event.target.value }
+      const subFilter = { ...state, type: event.target.value }
+
+      fetchPets(subFilter)
+      return subFilter
     })
-    console.log(event.target.value)
-    fetchPets()
   }
 
   return (

@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+
 import { api } from '../libs/axios'
 
 interface PetsProviderProps {
@@ -30,7 +31,7 @@ interface Pet {
   energy: number
   size: string
   independence: string
-  type: 'dog' | 'cat' | 'all'
+  type: string
   photo: string
   orgId: string
   photo_url: string
@@ -63,7 +64,7 @@ interface PetsContextType {
   cities: City[]
   location: Location
   fetchCities: (UF: string) => Promise<void>
-  fetchPets: () => Promise<void>
+  fetchPets: (querys: SubFilter) => Promise<void>
   setSubFilter: Dispatch<SetStateAction<SubFilter>>
   setLocation: Dispatch<SetStateAction<Location>>
 }
@@ -94,19 +95,18 @@ export function PetsProvider({ children }: PetsProviderProps) {
     setCities(response.data.citys)
   }, [])
 
-  const fetchPets = useCallback(async () => {
+  const fetchPets = useCallback(async (querys: SubFilter) => {
     const response = await api.get(`/pets/São Paulo`, {
       params: {
-        age: subFilter?.age,
-        energy: subFilter?.energy,
-        independence: subFilter?.independence,
-        size: subFilter?.size,
-        type: subFilter?.type,
+        age: querys?.age,
+        energy: querys?.energy,
+        independence: querys?.independence,
+        size: querys?.size,
+        type: querys?.type,
       },
     })
-    console.log('fetchPets =>', response.data.pets)
     setPets(response.data.pets)
-  }, [subFilter])
+  }, [])
 
   return (
     <PetsContext.Provider

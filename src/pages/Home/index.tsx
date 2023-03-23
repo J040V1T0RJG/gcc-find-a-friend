@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import {
   Container,
   Filter,
@@ -8,7 +10,6 @@ import {
 import logoImage from '@/assets/icons/logo.svg'
 import bannerDogImage from '@/assets/images/banner.svg'
 import { SelectCity, SelectState } from '@/components/Select'
-import { useContext } from 'react'
 import { PetsContext } from '@/contexts/PetsContext'
 import { ButtonSearch } from '@/components/Button'
 

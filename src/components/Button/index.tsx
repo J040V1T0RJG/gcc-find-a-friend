@@ -1,7 +1,8 @@
-import searchImage from '@/assets/icons/search.svg'
-import { PetsContext } from '@/contexts/PetsContext'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import searchImage from '@/assets/icons/search.svg'
+import { PetsContext } from '@/contexts/PetsContext'
 import { ButtonSearchContainer } from './styles'
 
 export function ButtonSearch() {
@@ -9,7 +10,7 @@ export function ButtonSearch() {
   const { location, fetchPets, setSubFilter } = useContext(PetsContext)
 
   function handleSearchPets() {
-    fetchPets()
+    fetchPets({})
     setSubFilter({})
     navigate('/map')
   }

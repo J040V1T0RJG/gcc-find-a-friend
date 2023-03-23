@@ -1,8 +1,7 @@
-import { Select } from '@/components/Select'
+import { ChangeEvent, useContext } from 'react'
 
+import { Select, SelectCity, SelectState } from '@/components/Select'
 import logo from '@/assets/icons/logo.svg'
-import search from '@/assets/icons/search.svg'
-
 import {
   Container,
   AsideHeader,
@@ -11,6 +10,8 @@ import {
   ContentHeader,
   ContentFilters,
 } from './styles'
+import { PetsContext } from '@/contexts/PetsContext'
+import { ButtonSearch } from '../Button'
 
 const ageOptions = [
   {
@@ -78,12 +79,18 @@ const independencyOptions = [
 ]
 
 export function Aside() {
-  function handleSearchPets() {
-    // TO DO
-  }
+  const { brazilianStates, cities, setSubFilter, fetchPets } =
+    useContext(PetsContext)
 
-  function handleChangeSearchFilters() {
-    // TO DO
+  function handleChangeSearchFilters(event: ChangeEvent<HTMLFormElement>) {
+    const { name, value } = event.target
+
+    setSubFilter((state) => {
+      const subFilter = { ...state, [name]: value }
+
+      fetchPets(subFilter)
+      return subFilter
+    })
   }
 
   return (
@@ -92,16 +99,15 @@ export function Aside() {
         <div>
           <img src={logo} alt="" />
           <HeaderInput>
-            <input type="text" placeholder="Insira uma cidade" />
-            <button>
-              <img src={search} alt="ícone de lupa" />
-            </button>
+            <SelectState name={''} options={brazilianStates} />
+            <SelectCity name={''} options={cities} />
+            <ButtonSearch />
           </HeaderInput>
         </div>
       </AsideHeader>
       <AsideContent>
         <ContentHeader>Filtros</ContentHeader>
-        <ContentFilters>
+        <ContentFilters onChange={handleChangeSearchFilters}>
           <Select name="age" label="Idade" options={ageOptions} />
 
           <Select

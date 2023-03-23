@@ -10,23 +10,24 @@ export const AsideHeader = styled.div`
   height: 241px;
   background-color: #e44449;
 
-  img {
-    width: 45px;
-  }
-
   & > div {
     padding: 81px 56px 26px;
     display: flex;
     flex-direction: column;
     gap: 26px;
+
+    > img {
+      width: 45px;
+    }
   }
 `
 
 export const HeaderInput = styled.div`
   display: flex;
+  width: 296px;
   gap: 12px;
 
-  input {
+  /* input {
     width: 203px;
     height: 60px;
     font-size: 16px;
@@ -41,11 +42,11 @@ export const HeaderInput = styled.div`
     &::placeholder {
       color: #f2f2f2;
     }
-  }
+  } */
 
-  button {
-    width: 60px;
-    height: 60px;
+  /* button {
+    min-width: 72px;
+    height: 72px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +63,7 @@ export const HeaderInput = styled.div`
     :hover {
       filter: brightness(0.9);
     }
-  }
+  } */
 `
 
 export const AsideContent = styled.div`
@@ -79,7 +80,7 @@ export const ContentHeader = styled.h1`
   margin-bottom: 27px;
 `
 
-export const ContentFilters = styled.div`
+export const ContentFilters = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;

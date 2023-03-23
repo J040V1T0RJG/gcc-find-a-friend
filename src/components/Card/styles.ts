@@ -56,7 +56,9 @@ export const PetImage = styled.div`
   object-fit: cover;
 
   img {
-    width: 100%;
+    width: 247px;
+    height: 135px;
+    border-radius: 20px;
   }
 `
 

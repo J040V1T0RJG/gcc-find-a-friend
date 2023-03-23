@@ -1,11 +1,10 @@
 import logo from '@/assets/icons/logo.svg'
-
 import { Container, Name, PetImage, TypeIcon } from './styles'
 
 type CardProps = {
   path: string
   name: string
-  type: 'dog' | 'cat'
+  type: 'dog' | 'cat' | 'all'
 }
 
 export function Card({ path, name, type }: CardProps) {

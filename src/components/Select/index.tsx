@@ -1,6 +1,7 @@
+import { ChangeEvent, ComponentProps, useContext } from 'react'
+
 import chevronImage from '@/assets/icons/chevron-bottom.svg'
 import { BrazilianState, City, PetsContext } from '@/contexts/PetsContext'
-import { ChangeEvent, ComponentProps, useContext } from 'react'
 import {
   Filter,
   FilterLabel,
@@ -56,7 +57,10 @@ export function SelectState({
 
   function handleChangeState(event: ChangeEvent<HTMLSelectElement>) {
     setLocation((state) => {
-      return { ...state, brazilianState: event.target.value }
+      return {
+        ...state,
+        brazilianState: event.target.value,
+      }
     })
     fetchCities(event.target.value)
   }
@@ -92,7 +96,10 @@ export function SelectCity({
 
   function handleChangeCity(event: ChangeEvent<HTMLSelectElement>) {
     setLocation((state) => {
-      return { ...state, city: event.target.value }
+      return {
+        ...state,
+        city: event.target.value,
+      }
     })
   }
 

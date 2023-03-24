@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 
 export const SliderContainer = styled.div`
-  .slider-principal {
+  margin-left: -72px;
+  margin-right: -72px;
+
+  .main-slider {
     height: 336px;
     border-radius: 20px 20px 0px 0px;
     object-fit: cover;
   }
 
   .thumbnail {
-    justify-content: center;
+    /* padding-left: 72px; */
     margin-top: 32px;
   }
 
@@ -24,5 +27,11 @@ export const SliderContainer = styled.div`
       border: 4px solid #0d3b66;
       opacity: 1;
     }
+  }
+
+  .text {
+    width: 80px;
+    height: 80px;
+    background: transparent;
   }
 `

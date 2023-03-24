@@ -96,7 +96,7 @@ export function PetsProvider({ children }: PetsProviderProps) {
   }, [])
 
   const fetchPets = useCallback(async (querys: SubFilter) => {
-    const response = await api.get(`/pets/São Paulo`, {
+    const response = await api.get(`/pets/Sao Paulo`, {
       params: {
         age: querys?.age,
         energy: querys?.energy,

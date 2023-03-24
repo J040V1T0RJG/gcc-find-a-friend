@@ -56,6 +56,7 @@ export function Map() {
                   path={pet.photo_url}
                   type={pet.type}
                   name={pet.name}
+                  id={pet.id}
                 />
               )
             })}

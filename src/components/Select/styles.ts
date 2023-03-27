@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const Filter = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 `
 
 export const FilterLabel = styled.label`
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 14px;
   font-weight: 500;
 `
@@ -17,7 +17,7 @@ export const FilterWrapper = styled.div`
 
   & > img {
     position: absolute;
-    right: 18px;
+    right: 1.125rem;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -25,8 +25,8 @@ export const FilterWrapper = styled.div`
 
 export const FilterInput = styled.select`
   width: 100%;
-  height: 60px;
-  font-size: 16px;
+  height: 3.75rem;
+  font-size: 1rem;
   line-height: 19.2px;
   font-weight: 800;
   color: ${(props) => props.theme.white};
@@ -41,8 +41,8 @@ export const FilterInput = styled.select`
 
   &::before {
     content: '⌄';
-    width: 12px;
-    height: 6px;
+    width: 0.75rem;
+    height: 0.5rem;
     display: absolute;
     color: ${(props) => props.theme.white};
   }
@@ -50,29 +50,29 @@ export const FilterInput = styled.select`
 
 export const FilterInputOption = styled.option`
   font-family: 'Nunito';
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 16px;
   font-weight: 500;
   background: ${(props) => props.theme.carnation};
   color: ${(props) => props.theme.white};
-  padding: 5px 7px;
+  padding: 0.25rem 0.5rem;
 `
 
 export const FilterWrapperState = styled(FilterWrapper)`
   & > img {
-    width: 8px;
+    width: 0.5rem;
     position: absolute;
-    right: 12px;
+    right: 0.75rem;
   }
 `
 
 export const FilterInputState = styled(FilterInput)`
-  width: 72px;
-  height: 72px;
+  width: 4.5rem;
+  height: 4.5rem;
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.white};
   border-radius: 20px;
-  padding: 20px;
+  padding: 1.25rem;
 `
 
 export const FilterWrapperCity = styled(FilterWrapper)`
@@ -86,7 +86,7 @@ export const FilterWrapperCity = styled(FilterWrapper)`
 
 export const FilterInputCity = styled(FilterInput)`
   width: 100%;
-  height: 72px;
+  height: 4.5rem;
   text-align: center;
   background-color: ${(props) => props.theme.cinnabar};
   border: 1px solid ${(props) => props.theme.carnation};

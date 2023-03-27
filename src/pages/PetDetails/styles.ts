@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
 export const PetDetailsContainer = styled.div`
-  margin: 108px auto;
+  margin: 6.75rem auto;
 
-  width: 704px;
-  height: 2035px;
+  width: 44rem;
 
   background: ${(props) => props.theme.white};
   border-radius: 20px;
 
-  padding-left: 72px;
-  padding-right: 72px;
-  padding-bottom: 72px;
+  padding-left: 4.5rem;
+  padding-right: 4.5rem;
+  padding-bottom: 4.5rem;
 
   color: ${(props) => props.theme['blue-dark']};
 
@@ -19,24 +18,24 @@ export const PetDetailsContainer = styled.div`
     display: flex;
     flex-direction: row;
 
-    gap: 18px;
+    gap: 1.125rem;
 
-    margin-top: 40px;
-    padding-top: 55px;
+    margin-top: 2.5rem;
+    padding-top: 3.5rem;
     border-top: 1px solid #d3e2e6;
 
     .logoOrange {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 64px;
-      height: 64px;
+      width: 4rem;
+      height: 4rem;
 
-      background: #f27006;
+      background: ${(props) => props.theme.yellow};
       border-radius: 15px;
 
       img {
-        width: 28px;
+        width: 1.75rem;
       }
     }
 
@@ -49,7 +48,7 @@ export const PetDetailsContainer = styled.div`
       }
       h3 {
         font-weight: 600;
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 28px;
         color: #0d3b66;
         margin-top: 6px;
@@ -60,10 +59,10 @@ export const PetDetailsContainer = styled.div`
         justify-content: center;
         align-items: center;
 
-        width: 216px;
-        height: 54px;
-        gap: 12px;
-        margin-top: 16px;
+        width: 13.5rem;
+        height: 3.5rem;
+        gap: 0.75rem;
+        margin-top: 1rem;
 
         background: rgba(13, 59, 102, 0.05);
         border-radius: 10px;
@@ -72,14 +71,14 @@ export const PetDetailsContainer = styled.div`
   }
 
   .requirements {
-    margin-top: 50px;
-    padding-top: 55px;
+    margin-top: 3.125rem;
+    padding-top: 3.5rem;
     border-top: 1px solid #d3e2e6;
     .alertBoxes {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 40px;
+      margin-top: 2.5rem;
 
       .alert {
         display: flex;
@@ -88,17 +87,17 @@ export const PetDetailsContainer = styled.div`
 
         width: 100%;
         gap: 14px;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        padding-right: 16px;
-        padding-left: 40px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-right: 1rem;
+        padding-left: 2.5rem;
 
         background: linear-gradient(
           129.72deg,
           rgba(247, 95, 96, 0.1) 16.45%,
           rgba(241, 81, 86, 0) 67.3%
         );
-        border: 1px solid #f15156;
+        border: 1px solid ${(props) => props.theme.carnation};
         border-radius: 10px;
 
         img {
@@ -107,19 +106,19 @@ export const PetDetailsContainer = styled.div`
 
         p {
           font-weight: 600;
-          font-size: 18px;
+          font-size: 1.125rem;
           line-height: 28px;
 
-          color: #f15156;
+          color: ${(props) => props.theme.carnation};
         }
       }
     }
   }
 
   .whatsaap {
-    border-top: 1px solid #d3e2e6;
-    margin-top: 50px;
-    padding-top: 50px;
+    border-top: 1px solid ${(props) => props.theme['blue-ligth']};
+    margin-top: 3.125rem;
+    padding-top: 3.125rem;
 
     button {
       display: flex;
@@ -128,8 +127,8 @@ export const PetDetailsContainer = styled.div`
       justify-content: center;
 
       width: 100%;
-      height: 64px;
-      gap: 16px;
+      height: 4rem;
+      gap: 1rem;
 
       background: #3cdc8c;
       border-radius: 20px;
@@ -137,9 +136,9 @@ export const PetDetailsContainer = styled.div`
 
       p {
         font-weight: 800;
-        font-size: 18px;
+        font-size: 1.125rem;
 
-        color: #ffffff;
+        color: ${(props) => props.theme.white};
       }
 
       &:hover {

@@ -6,10 +6,10 @@ export const GeoMapContainer = styled.div`
   flex-direction: column;
 
   border-radius: 20px;
-  background: #0d3b66;
-  margin-top: 70px;
+  background: ${(props) => props.theme['blue-dark']};
+  margin-top: 4.5rem;
 
-  color: white;
+  color: ${(props) => props.theme.white};
 
   .googleGeoMap {
     overflow: hidden;
@@ -22,19 +22,19 @@ export const GeoMapContainer = styled.div`
     align-items: center;
     border-radius: 20px;
 
-    height: 65px;
+    height: 4rem;
 
-    background: #0d3b66;
+    background: ${(props) => props.theme['blue-dark']};
     border: none;
 
     p {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 1.125rem;
       line-height: 25px;
 
       text-align: center;
 
-      color: #f4d35e;
+      color: ${(props) => props.theme['yellow-dark']};
     }
   }
 `

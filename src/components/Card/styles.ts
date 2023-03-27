@@ -1,26 +1,26 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 280px;
+  max-width: 17.5rem;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  padding: 3px;
+  padding: 0.25rem;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.white};
   overflow: hidden;
 
   &:hover {
-    background-color: #0d3b66;
+    background-color: ${(props) => props.theme['blue-dark']};
 
     div {
-      background-color: #0d3b66;
+      background-color: ${(props) => props.theme['blue-dark']};
     }
 
     p {
-      color: #ffffff;
+      color: ${(props) => props.theme.white};
     }
   }
 `
@@ -32,11 +32,11 @@ export const TypeIcon = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-top: -30px;
-  padding: 2px;
-  border-radius: 10px;
+  margin-top: -1.875rem;
+  padding: 0.125rem;
+  border-radius: 0.625rem;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.white};
 
   div {
     width: 100%;
@@ -48,7 +48,7 @@ export const TypeIcon = styled.div`
   }
 
   img {
-    width: 15px;
+    width: 1rem;
   }
 `
 
@@ -56,16 +56,16 @@ export const PetImage = styled.div`
   object-fit: cover;
 
   img {
-    width: 247px;
-    height: 135px;
+    width: 15.5rem;
+    height: 8.5rem;
     border-radius: 20px;
   }
 `
 
 export const Name = styled.p`
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 21.6px;
   font-weight: 700;
-  margin: 8px auto 17px;
-  color: #0d3b66;
+  margin: 0.5rem auto 1rem;
+  color: ${(props) => props.theme['blue-dark']};
 `

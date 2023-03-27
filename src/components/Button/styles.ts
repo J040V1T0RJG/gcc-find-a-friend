@@ -5,8 +5,8 @@ export const ButtonSearchContainer = styled.button`
   justify-content: center;
   align-items: center;
 
-  min-width: 72px;
-  height: 72px;
+  min-width: 4.5rem;
+  height: 4.5rem;
 
   background: ${(props) => props.theme['yellow-dark']};
   border-radius: 20px;

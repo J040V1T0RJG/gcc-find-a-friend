@@ -1,15 +1,23 @@
 import logo from '@/assets/icons/logo.svg'
+import { useNavigate } from 'react-router-dom'
 import { Container, Name, PetImage, TypeIcon } from './styles'
 
 type CardProps = {
   path: string
   name: string
-  type: 'dog' | 'cat' | 'all'
+  type: string
+  id: string
 }
 
-export function Card({ path, name, type }: CardProps) {
+export function Card({ path, name, type, id }: CardProps) {
+  const navigate = useNavigate()
+
+  function handleChoosePet() {
+    navigate(`/pet-details/${id}`)
+  }
+
   return (
-    <Container>
+    <Container onClick={handleChoosePet}>
       <PetImage>
         <img src={path} alt={`Foto de ${name}`} />
       </PetImage>

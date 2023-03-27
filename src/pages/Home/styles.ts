@@ -21,7 +21,7 @@ export const MainStyled = styled.main`
 
   h1 {
     font-weight: 800;
-    font-size: 72px;
+    font-size: 4.5rem;
     line-height: 90%;
 
     letter-spacing: -0.02em;
@@ -37,17 +37,17 @@ export const FooterStyled = styled.footer`
 
   h3 {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 34px;
   }
 `
 
 export const Filter = styled.div`
   display: flex;
-  width: 624px;
+  width: 39rem;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 
   label {
     min-width: max-content;
@@ -59,8 +59,8 @@ export const Filter = styled.div`
     justify-content: center;
     align-items: center;
 
-    min-width: 72px;
-    height: 72px;
+    min-width: 4.5rem;
+    height: 4.5rem;
 
     background: ${(props) => props.theme['yellow-dark']};
     border-radius: 20px;

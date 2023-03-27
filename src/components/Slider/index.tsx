@@ -5,9 +5,15 @@ import {
   useKeenSlider,
 } from 'keen-slider/react'
 import { MutableRefObject } from 'react'
+
+import { PetGallery } from '@/pages/PetDetails'
 import { SliderContainer } from './styles'
 
-export function Slider() {
+type GalleryProps = {
+  gallery: PetGallery[]
+}
+
+export function Slider({ gallery }: GalleryProps) {
   function ThumbnailPlugin(
     mainRef: MutableRefObject<KeenSliderInstance | null>,
   ): KeenSliderPlugin {
@@ -58,73 +64,37 @@ export function Slider() {
     [ThumbnailPlugin(instanceRef)],
   )
 
-  return (
-    <SliderContainer>
-      <div ref={sliderRef} className="keen-slider">
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-        <img
-          src="https://i0.wp.com/thesportsgrail.com/wp-content/uploads/2023/03/Legend-Of-The-Northern-Blade-Chapter-147-Release-Date-Spoilers-Where-To-Read.jpg?fit=1280%2C720&ssl=1"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-        <img
-          src="https://metagalaxia.com.br/wp-content/uploads/2022/06/garou-one-punch-man-2.jpg"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide main-slider"
-        />
-      </div>
+  if (gallery.length > 0) {
+    return (
+      <SliderContainer>
+        <div ref={sliderRef} className="keen-slider">
+          {gallery.map((photo) => {
+            return (
+              <img
+                key={photo.id}
+                src={photo.photo_url}
+                alt=""
+                className="keen-slider__slide main-slider"
+              />
+            )
+          })}
+        </div>
 
-      <div ref={thumbnailRef} className="keen-slider thumbnail">
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide"
-        />
-        <img
-          src="https://i0.wp.com/thesportsgrail.com/wp-content/uploads/2023/03/Legend-Of-The-Northern-Blade-Chapter-147-Release-Date-Spoilers-Where-To-Read.jpg?fit=1280%2C720&ssl=1"
-          alt=""
-          className="keen-slider__slide"
-        />
-        <img
-          src="https://metagalaxia.com.br/wp-content/uploads/2022/06/garou-one-punch-man-2.jpg"
-          alt=""
-          className="keen-slider__slide"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide"
-        />
-        <img
-          src="https://streamingflix.com.br/wp-content/uploads/2023/01/27878-a-lenda-da-lamina-do-norte-capitulo-139-data-e-hora-de-lancamento-spoilers-leia-online.jpg"
-          alt=""
-          className="keen-slider__slide"
-        />
-      </div>
-    </SliderContainer>
-  )
+        <div ref={thumbnailRef} className="keen-slider thumbnail">
+          {gallery.map((photo) => {
+            return (
+              <img
+                key={photo.id}
+                src={photo.photo_url}
+                alt=""
+                className="keen-slider__slide"
+              />
+            )
+          })}
+        </div>
+      </SliderContainer>
+    )
+  } else {
+    return <></>
+  }
 }

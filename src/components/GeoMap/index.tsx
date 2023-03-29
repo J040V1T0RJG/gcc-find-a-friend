@@ -34,15 +34,19 @@ export function GeoMap({ cep }: GeoMapProps) {
   }
 
   const fetchLocation = useCallback(async () => {
-    if (cep) {
-      const response = await api.get(`/location/coordinates/${cep}`)
-      setOrgLocation(response.data.coordinates)
+    try {
+      if (cep) {
+        const response = await api.get(`/location/coordinates/${cep}`)
+        setOrgLocation(response.data.coordinates)
+      }
+    } catch (error) {
+      console.error(error)
     }
   }, [setOrgLocation, cep])
 
   useEffect(() => {
     fetchLocation()
-  }, [fetchLocation, cep])
+  }, [fetchLocation])
 
   return (
     <GeoMapContainer>

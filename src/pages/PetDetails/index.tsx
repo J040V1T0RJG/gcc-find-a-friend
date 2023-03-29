@@ -48,32 +48,34 @@ interface PetAdoptionRequirements {
 
 export function PetDetails() {
   const { petId } = useParams()
-  const [petDetails, setPetDetatils] = useState<PetDetatils>()
+  const [petDetails, setPetDetails] = useState<PetDetatils>()
   const [petGallery, setPetGallery] = useState<PetGallery[]>([])
   const [petAdoptionRequirements, setPetAdoptionRequirements] = useState<
     PetAdoptionRequirements[]
   >([])
 
   const fetchPetDetails = useCallback(async () => {
-    const response = await api.get(`/pets/show/${petId}`)
-    setPetDetatils(response.data.pet)
-  }, [petId])
+    try {
+      const [responsePet, responsePetGallery, responseAdoptionRequirements] =
+        await Promise.all([
+          api.get(`/pets/show/${petId}`),
+          api.get(`/pets/gallery/${petId}`),
+          api.get(`/pets/adoption-requirements/${petId}`),
+        ])
 
-  const fetchPetGallery = useCallback(async () => {
-    const response = await api.get(`/pets/gallery/${petId}`)
-    setPetGallery(response.data.pet_gallery)
-  }, [petId])
-
-  const fetchPetAdoptionRequirements = useCallback(async () => {
-    const response = await api.get(`/pets/adoption-requirements/${petId}`)
-    setPetAdoptionRequirements(response.data.adoption_requirements)
+      setPetDetails(responsePet.data.pet)
+      setPetGallery(responsePetGallery.data.pet_gallery)
+      setPetAdoptionRequirements(
+        responseAdoptionRequirements.data.adoption_requirements,
+      )
+    } catch (error) {
+      console.error(error)
+    }
   }, [petId])
 
   useEffect(() => {
     fetchPetDetails()
-    fetchPetGallery()
-    fetchPetAdoptionRequirements()
-  }, [fetchPetDetails, fetchPetGallery, fetchPetAdoptionRequirements])
+  }, [fetchPetDetails])
 
   return (
     <PetDetailsContainer>

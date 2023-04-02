@@ -48,10 +48,12 @@ export function GeoMap({ cep }: GeoMapProps) {
     fetchLocation()
   }, [fetchLocation])
 
+  const googleMapsApiKey: string = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+
   return (
     <GeoMapContainer>
       <div className="googleGeoMap">
-        <LoadScript googleMapsApiKey="AIzaSyDFiQzRDV8TtAmnHvFNwI2O_PGpoCYRK7o">
+        <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}

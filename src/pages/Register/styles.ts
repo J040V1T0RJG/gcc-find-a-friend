@@ -107,20 +107,6 @@ export const Buttons = styled.div`
   gap: 1.25rem;
   margin-top: 3.75rem;
 
-  p {
-    font-weight: 800;
-    font-size: 1.25rem
-    line-height: 34px;
-
-    text-align: center;
-    text-decoration-line: underline;
-    margin-bottom: 4rem;
-
-    color: ${(props) => props.theme['blue-dark']};
-
-    cursor: pointer;
-  }
-
   .primary {
     color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme['blue-dark']};
@@ -129,6 +115,7 @@ export const Buttons = styled.div`
   .secondary {
     color: ${(props) => props.theme['blue-dark']};
     background-color: #f5f8fa;
+    margin-bottom: 4rem;
   }
 `
 export const Button = styled.button`

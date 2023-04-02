@@ -4,16 +4,20 @@ import { GlobalStyle } from './styles/global'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
 import { PetsProvider } from './contexts/PetsContext'
+import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
-        <PetsProvider>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </PetsProvider>
+        <AuthProvider>
+          <PetsProvider>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </PetsProvider>
+        </AuthProvider>
+
         <GlobalStyle />
       </ThemeProvider>
     </>

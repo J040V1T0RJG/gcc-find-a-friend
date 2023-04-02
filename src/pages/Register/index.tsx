@@ -39,7 +39,7 @@ const orgRegistrationData = zod
   })
   .required()
 
-type DataRegister = zod.infer<typeof orgRegistrationData>
+type RegisterData = zod.infer<typeof orgRegistrationData>
 
 export function Register() {
   const navigate = useNavigate()
@@ -49,11 +49,11 @@ export function Register() {
   const [passwordShown, setPasswordShown] = useState<boolean>(false)
   const [confirmPasswordShown, setConfirmPasswordShown] =
     useState<boolean>(false)
-  const { register, handleSubmit, resetField, reset } = useForm<DataRegister>({
+  const { register, handleSubmit, resetField, reset } = useForm<RegisterData>({
     resolver: zodResolver(orgRegistrationData),
   })
 
-  async function handleRegisterOrganization(data: DataRegister) {
+  async function handleRegisterOrganization(data: RegisterData) {
     if (data.password !== data.passwordConfirm) {
       alert('senhas diferentes')
       resetField('passwordConfirm')
@@ -109,7 +109,7 @@ export function Register() {
               <input
                 type="email"
                 id="email"
-                placeholder="email@gmail.com"
+                placeholder="Email"
                 required
                 {...register('email')}
               />
@@ -217,13 +217,15 @@ export function Register() {
               <Button type="submit" className="primary">
                 Cadastrar
               </Button>
-              <p
+              <Button
+                type="button"
                 onClick={() => {
                   navigate('/login')
                 }}
+                className="secondary"
               >
                 Já possui conta?
-              </p>
+              </Button>
             </Buttons>
           </Form>
         </FormWrapper>

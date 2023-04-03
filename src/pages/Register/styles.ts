@@ -1,43 +1,31 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   background: white;
-  margin-bottom: 25rem;
 `
 
 export const Container = styled.main`
-  max-width: 1112px;
-  width: 100%;
-  /* height: 100%; */
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100vw;
+  padding-top: 5rem;
+  gap: 8.5rem;
 `
 
 export const Card = styled.div`
-  width: 30.5rem;
-  height: 41.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  align-self: center;
 
-  position: sticky;
-  left: 0;
-  top: 0;
-
-  background-color: ${(props) => props.theme.carnation};
+  width: 30.5rem;
+  height: 41.25rem;
   border-radius: 20px;
   padding: 6.75rem 3.25rem 2.5rem;
+
+  background: ${(props) => props.theme.carnation};
 
   .logo {
     width: 10.75rem;
@@ -49,17 +37,21 @@ export const Card = styled.div`
 `
 
 export const FormWrapper = styled.div`
-  width: 30.5rem;
-  height: 41.25rem;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
 
+  width: 30.5rem;
   h1 {
-    font-size: 3.25rem;
-    color: ${(props) => props.theme['blue-dark']};
+    font-weight: 700;
+    font-size: 3.375rem;
     line-height: 90%;
-    letter-spacing: -2px;
+
     text-align: center;
-    margin-bottom: 6.25rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 4.5rem;
+
+    color: ${(props) => props.theme['blue-dark']};
   }
 `
 
@@ -71,12 +63,12 @@ export const InputWrapper = styled.div`
   border: 1px solid ${(props) => props.theme['blue-ligth']};
   border-radius: 10px;
   padding: 1.125rem;
+  margin-bottom: 2rem;
 `
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 
   label {
     font-size: 1rem;
@@ -129,8 +121,8 @@ export const Button = styled.button`
   padding: 1.25rem auto;
   border: none;
 
-  &:disabled {
-    cursor: not-allowed;
+  &:hover {
+    opacity: 0.8;
   }
 `
 export const GoogleMapContainer = styled.div`
@@ -138,6 +130,7 @@ export const GoogleMapContainer = styled.div`
   height: 8.875rem;
   overflow: hidden;
   border-radius: 20px;
+  margin-top: -1rem;
   margin-bottom: 2rem;
 
   opacity: 0.8;

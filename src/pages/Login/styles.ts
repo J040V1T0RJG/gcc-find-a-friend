@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: ${(props) => props.theme.white};
 `
 
 export const Container = styled.main`
@@ -66,13 +67,14 @@ export const InputWrapper = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* gap: 1rem; */
 
   label {
     font-size: 1rem;
     font-weight: 600;
     color: #0d3b66;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
   }
 
   input {
@@ -117,4 +119,8 @@ export const Button = styled.button`
   border-radius: 20px;
   padding: 1.25rem auto;
   border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `

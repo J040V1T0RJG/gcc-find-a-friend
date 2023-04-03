@@ -91,7 +91,9 @@ export function Register() {
           <img src={petsImage} className="petBanner" alt="" />
         </Card>
         <FormWrapper>
-          <h1>Cadastre sua organização</h1>
+          <h1>
+            Cadastre sua <br /> organização
+          </h1>
           <Form onSubmit={handleSubmit(handleRegisterOrganization)}>
             <label htmlFor="name">Nome do responsável</label>
             <InputWrapper>

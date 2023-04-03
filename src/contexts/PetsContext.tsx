@@ -103,22 +103,25 @@ export function PetsProvider({ children }: PetsProviderProps) {
     }
   }, [])
 
-  const fetchPets = useCallback(async (querys: SubFilter) => {
-    try {
-      const response = await api.get(`/pets/Sao Paulo`, {
-        params: {
-          age: querys?.age,
-          energy: querys?.energy,
-          independence: querys?.independence,
-          size: querys?.size,
-          type: querys?.type,
-        },
-      })
-      setPets(response.data.pets)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+  const fetchPets = useCallback(
+    async (querys: SubFilter) => {
+      try {
+        const response = await api.get(`/pets/${location.city}`, {
+          params: {
+            age: querys?.age,
+            energy: querys?.energy,
+            independence: querys?.independence,
+            size: querys?.size,
+            type: querys?.type,
+          },
+        })
+        setPets(response.data.pets)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [location.city],
+  )
 
   return (
     <PetsContext.Provider

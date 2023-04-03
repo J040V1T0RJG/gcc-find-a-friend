@@ -122,7 +122,16 @@ export function Register() {
                 id="cep"
                 placeholder="00000-000"
                 required
-                {...register('cep', { pattern: /^\d{5}-\d{3}$/ })}
+                {...register('cep', {
+                  onBlur(event) {
+                    const pattern = /^(\d{5}-\d{3}|\d{8})$/
+                    const isValueAccepted = pattern.test(event.target.value)
+                    if (isValueAccepted) {
+                      handleRenderMapLocation(event)
+                    }
+                  },
+                  pattern: /^(\d{5}-\d{3}|\d{8})$/,
+                })}
               />
             </InputWrapper>
 
@@ -133,11 +142,7 @@ export function Register() {
                 id="address"
                 placeholder="Rua do Meio, 1825"
                 required
-                {...register('address', {
-                  onBlur(event) {
-                    handleRenderMapLocation(event)
-                  },
-                })}
+                {...register('address')}
                 onBlur={handleRenderMapLocation}
               />
             </InputWrapper>

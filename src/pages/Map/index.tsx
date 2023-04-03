@@ -31,9 +31,17 @@ export function Map() {
 
       <Content>
         <Header>
-          <p>
-            Encontre <span>324 amigos</span> na sua cidade
-          </p>
+          {pets.length > 0 ? (
+            <p>
+              Encontre{' '}
+              <span>
+                {pets.length === 1 ? '1 amigo' : `${pets.length} amigos`}
+              </span>{' '}
+              na sua cidade
+            </p>
+          ) : (
+            <p>Nenhum amigo encontrado na sua cidade</p>
+          )}
           <SelectWrapper>
             <HeaderSelect
               name="size"

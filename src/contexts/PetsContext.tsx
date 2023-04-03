@@ -82,8 +82,12 @@ export function PetsProvider({ children }: PetsProviderProps) {
   })
 
   const fetchBrazilianStates = useCallback(async () => {
-    const response = await api.get('/location/states')
-    setBrazilianStates(response.data.states)
+    try {
+      const response = await api.get('/location/states')
+      setBrazilianStates(response.data.states)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
   useEffect(() => {
@@ -91,22 +95,33 @@ export function PetsProvider({ children }: PetsProviderProps) {
   }, [fetchBrazilianStates])
 
   const fetchCities = useCallback(async (UF: string) => {
-    const response = await api.get(`/location/citys/${UF}`)
-    setCities(response.data.citys)
+    try {
+      const response = await api.get(`/location/citys/${UF}`)
+      setCities(response.data.citys)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
-  const fetchPets = useCallback(async (querys: SubFilter) => {
-    const response = await api.get(`/pets/Sao Paulo`, {
-      params: {
-        age: querys?.age,
-        energy: querys?.energy,
-        independence: querys?.independence,
-        size: querys?.size,
-        type: querys?.type,
-      },
-    })
-    setPets(response.data.pets)
-  }, [])
+  const fetchPets = useCallback(
+    async (querys: SubFilter) => {
+      try {
+        const response = await api.get(`/pets/${location.city}`, {
+          params: {
+            age: querys?.age,
+            energy: querys?.energy,
+            independence: querys?.independence,
+            size: querys?.size,
+            type: querys?.type,
+          },
+        })
+        setPets(response.data.pets)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [location.city],
+  )
 
   return (
     <PetsContext.Provider

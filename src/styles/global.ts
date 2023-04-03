@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     color: ${(props) => props.theme.white};
     background: ${(props) => props.theme.carnation};
+    /* background: ${(props) => props.theme.white}; */
     -webkit-font-smoothing: antialiased;
   }
 

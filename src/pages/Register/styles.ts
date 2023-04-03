@@ -1,59 +1,57 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: white;
 `
 
 export const Container = styled.main`
-  max-width: 1112px;
-  width: 100%;
-  /* height: 100%; */
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100vw;
+  padding-top: 5rem;
+  gap: 8.5rem;
 `
 
 export const Card = styled.div`
-  width: 488px;
-  height: 661px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  align-self: center;
 
-  position: sticky;
-  left: 0;
-  top: 0;
-
-  background-color: #f15156;
+  width: 30.5rem;
+  height: 41.25rem;
   border-radius: 20px;
-  padding: 107px 52px 39px;
+  padding: 6.75rem 3.25rem 2.5rem;
+
+  background: ${(props) => props.theme.carnation};
 
   .logo {
-    width: 174px;
+    width: 10.75rem;
+  }
+
+  .petBanner {
+    width: 24rem;
   }
 `
 
 export const FormWrapper = styled.div`
-  width: 488px;
-  height: 661px;
-  display: block;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
 
+  width: 30.5rem;
   h1 {
-    font-size: 54px;
-    color: #0d3b66;
+    font-weight: 700;
+    font-size: 3.375rem;
     line-height: 90%;
-    letter-spacing: -2px;
+
     text-align: center;
-    margin-bottom: 101px;
+    letter-spacing: -0.02em;
+    margin-bottom: 4.5rem;
+
+    color: ${(props) => props.theme['blue-dark']};
   }
 `
 
@@ -62,28 +60,28 @@ export const InputWrapper = styled.div`
   width: 100%;
 
   background-color: #f5f8fa;
-  border: 1px solid #d3e2e5;
+  border: 1px solid ${(props) => props.theme['blue-ligth']};
   border-radius: 10px;
-  padding: 18px;
+  padding: 1.125rem;
+  margin-bottom: 2rem;
 `
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 15px;
 
   label {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
-    color: #0d3b66;
-    margin-bottom: 8px;
+    color: ${(props) => props.theme['blue-dark']};
+    margin-bottom: 0.5rem;
   }
 
   input {
     width: 100%;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #0d3b66;
+    color: ${(props) => props.theme['blue-dark']};
     background-color: transparent;
     border: none;
     outline: none;
@@ -98,27 +96,42 @@ export const Buttons = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 21px;
-  margin-top: 61px;
+  gap: 1.25rem;
+  margin-top: 3.75rem;
 
   .primary {
-    color: #ffffff;
-    background-color: #0d3b66;
+    color: ${(props) => props.theme.white};
+    background-color: ${(props) => props.theme['blue-dark']};
   }
 
   .secondary {
-    color: #0d3b66;
+    color: ${(props) => props.theme['blue-dark']};
     background-color: #f5f8fa;
+    margin-bottom: 4rem;
   }
 `
 export const Button = styled.button`
   width: 100%;
-  height: 72px;
+  height: 4.5rem;
 
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 800;
   text-align: center;
   border-radius: 20px;
-  padding: 19px auto;
+  padding: 1.25rem auto;
   border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`
+export const GoogleMapContainer = styled.div`
+  width: 100%;
+  height: 8.875rem;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+
+  opacity: 0.8;
 `

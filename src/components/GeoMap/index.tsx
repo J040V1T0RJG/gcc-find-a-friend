@@ -34,20 +34,26 @@ export function GeoMap({ cep }: GeoMapProps) {
   }
 
   const fetchLocation = useCallback(async () => {
-    if (cep) {
-      const response = await api.get(`/location/coordinates/${cep}`)
-      setOrgLocation(response.data.coordinates)
+    try {
+      if (cep) {
+        const response = await api.get(`/location/coordinates/${cep}`)
+        setOrgLocation(response.data.coordinates)
+      }
+    } catch (error) {
+      console.error(error)
     }
   }, [setOrgLocation, cep])
 
   useEffect(() => {
     fetchLocation()
-  }, [fetchLocation, cep])
+  }, [fetchLocation])
+
+  const googleMapsApiKey: string = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
   return (
     <GeoMapContainer>
       <div className="googleGeoMap">
-        <LoadScript googleMapsApiKey="AIzaSyDFiQzRDV8TtAmnHvFNwI2O_PGpoCYRK7o">
+        <LoadScript googleMapsApiKey={googleMapsApiKey}>
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}

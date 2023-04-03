@@ -20,12 +20,12 @@ O Find a Friend está pronto para ajudá-lo em cada etapa do processo de adoçã
 
 **Siga as instruções para rodar a API**
 
-- [FindAFriend API](https://github.com/vitorsemidio-dev/gcc-find-a-friend-api)
+- [FindAFriend API](https://github.com/rocketseat-education/gcc-find-a-friend-api)
 
 **Clone este repositório**
 
 ```bash
-git clone https://github.com/vitorsemidio-dev/gcc-find-a-friend-web.git
+git clone https://github.com/rocketseat-education/gcc-find-a-friend-api.git
 ```
 
 **Instale as dependências em cada projeto**
@@ -43,5 +43,5 @@ npm run dev
 ## 🔗 Links
 
 - [Template do Desafio](https://efficient-sloth-d85.notion.site/Template-do-desafio-e9159a16a4df41f8aaf85df7dfd37ebe)
-- [API FindAFriend](https://efficient-sloth-d85.notion.site/API-FindAFriend-c9275383751f463b8a43137eed9087e8)
+- [Docs API FindAFriend](https://efficient-sloth-d85.notion.site/API-FindAFriend-c9275383751f463b8a43137eed9087e8)
 - [Figma - Find A Friend (APP)](https://www.figma.com/file/NbWfcr7D39oZZ96S5S7b2t/Find-A-Friend-(APP)-(Community)?node-id=201-384&t=ixwxCB9fhPLi0n0w-0)

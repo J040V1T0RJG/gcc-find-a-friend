@@ -113,7 +113,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
 
-  label {
+  > label {
     font-size: 1rem;
     font-weight: 600;
     color: #0d3b66;
@@ -130,7 +130,8 @@ export const Form = styled.form`
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
     font-size: 1.125rem;
     font-weight: 600;
@@ -142,10 +143,11 @@ export const Form = styled.form`
 
   textarea {
     height: 7.5rem;
+    padding: 1.125rem;
   }
 
-  img {
-    cursor: pointer;
+  .textareaWrapper {
+    padding: 0;
   }
 
   h2 {
@@ -159,6 +161,19 @@ export const Form = styled.form`
     padding-bottom: 1.75rem;
     margin-top: 4.375rem;
   }
+
+  .addFile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+
+    background: rgba(252, 134, 134, 0.1);
+    border: 1px dashed #e44449;
+    border-radius: 10px;
+    margin-top: 2.5rem;
+  }
 `
 
 export const InputWrapper = styled.div`
@@ -169,6 +184,90 @@ export const InputWrapper = styled.div`
   border: 1px solid #d3e2e5;
   border-radius: 10px;
   padding: 1.125rem;
+`
+
+export const FileWrapper = styled.div`
+  label {
+    background-color: #f5f8fa;
+    border: 1px solid #d3e2e5;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 9.5rem;
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+
+    .upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+
+      p {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 28px;
+
+        color: #0d3b66;
+      }
+    }
+  }
+
+  .showFiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 1rem;
+    width: 100%;
+    height: 50px;
+
+    border: 1px solid #d3e2e5;
+    border-radius: 10px;
+    margin-top: 1rem;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 28px;
+
+        color: #0d3b66;
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+    }
+  }
+
+  .addFile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+
+    background: rgba(252, 134, 134, 0.1);
+    border: 1px dashed #e44449;
+    border-radius: 10px;
+    margin-top: 2.5rem;
+  }
 `
 
 export const Button = styled.button`

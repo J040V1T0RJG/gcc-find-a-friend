@@ -145,7 +145,7 @@ export function Register() {
                 placeholder="Rua do Meio, 1825"
                 required
                 {...register('address')}
-                onBlur={handleRenderMapLocation}
+                // onBlur={handleRenderMapLocation}
               />
             </InputWrapper>
 

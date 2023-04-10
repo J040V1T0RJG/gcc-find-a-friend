@@ -18,6 +18,9 @@ import plusImage from '@/assets/icons/plus.svg'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
+import { useCallback, useContext, useEffect } from 'react'
+import { AuthContext } from '@/contexts/AuthContext'
 
 const ageOptions = [
   {
@@ -161,16 +164,25 @@ const petCreationDataSchema = z.object({
 type PetCreationDataType = z.infer<typeof petCreationDataSchema>
 
 export function PetCreate() {
+  const navigate = useNavigate()
+  const { userIsAuthenticated } = useContext(AuthContext)
   const { register, handleSubmit, getValues, watch, resetField } =
     useForm<PetCreationDataType>({
       resolver: zodResolver(petCreationDataSchema),
     })
 
-  console.log('getValues fora', getValues('images'))
+  const redirect = useCallback(async () => {
+    const validToken = await userIsAuthenticated()
+    if (!validToken) {
+      navigate('/login')
+    }
+  }, [userIsAuthenticated, navigate])
+
+  useEffect(() => {
+    redirect()
+  }, [redirect])
 
   function handleCreationPet(data: PetCreationDataType) {
-    console.log('getValues handle', getValues('images'))
-
     console.log(data)
   }
 

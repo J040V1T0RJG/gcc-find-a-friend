@@ -23,26 +23,24 @@ type OrgType = {
 }
 
 type AuthContextType = {
-  isAuthenticated: boolean
   org: OrgType | null
   signIn: (data: SignInData) => Promise<void>
+  logout: () => void
+  userIsAuthenticated: () => Promise<boolean>
 }
 
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [org, setOrg] = useState<OrgType | null>(null)
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 
   useEffect(() => {
     const storedStateAsJSON = localStorage.getItem(
       '@gcc-find-a-friend:authO-1.0.0',
     )
-
     if (storedStateAsJSON) {
       const storedStateAsObject: OrgType = JSON.parse(storedStateAsJSON)
       setOrg(storedStateAsObject)
-      setIsAuthenticated(true)
     }
   }, [])
 
@@ -52,15 +50,51 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const stateJSON = JSON.stringify(response.data)
       localStorage.setItem('@gcc-find-a-friend:authO-1.0.0', stateJSON)
-      setIsAuthenticated(true)
     } catch (error) {
       console.error(error)
       throw error
     }
   }
 
+  async function userIsAuthenticated() {
+    const storedStateAsJSON = localStorage.getItem(
+      '@gcc-find-a-friend:authO-1.0.0',
+    )
+
+    if (!storedStateAsJSON) {
+      return false
+    }
+
+    const storedStateAsObject: OrgType = JSON.parse(storedStateAsJSON)
+    const config = {
+      headers: {
+        Authorization: `Bearer ${storedStateAsObject.token}`,
+      },
+    }
+
+    try {
+      await api.patch('/auth/refresh-token', {}, config)
+      return true
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  }
+
+  function logout() {
+    localStorage.clear()
+    setOrg(null)
+  }
+
   return (
-    <AuthContext.Provider value={{ signIn, isAuthenticated, org }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        logout,
+        userIsAuthenticated,
+        org,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )

@@ -65,6 +65,7 @@ export function Register() {
       alert(`O seu registo foi concluído com sucesso.`)
       navigate('/login')
     } catch (error: any) {
+      console.error(error)
       reset()
       alert(`Error: ${error.response.data}`)
     }
@@ -145,7 +146,7 @@ export function Register() {
                 placeholder="Rua do Meio, 1825"
                 required
                 {...register('address')}
-                onBlur={handleRenderMapLocation}
+                // onBlur={handleRenderMapLocation}
               />
             </InputWrapper>
 

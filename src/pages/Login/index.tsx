@@ -31,20 +31,17 @@ type LoginData = zod.infer<typeof orgLoginData>
 
 export function Login() {
   const navigate = useNavigate()
-  const { signIn, isAuthenticated } = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext)
   const [passwordShown, setPasswordShown] = useState<boolean>(false)
 
   const { register, handleSubmit, reset } = useForm<LoginData>({
     resolver: zodResolver(orgLoginData),
   })
 
-  // if (isAuthenticated) {
-  //   navigate('/')
-  // }
-
   async function handleLogin({ email, password }: LoginData) {
     try {
       await signIn({ email, password })
+      navigate('/pet-create')
     } catch (error: any) {
       reset()
       alert(`Error: ${error.response.data.error}`)

@@ -25,6 +25,7 @@ type OrgType = {
 type AuthContextType = {
   org: OrgType | null
   signIn: (data: SignInData) => Promise<void>
+  logout: () => void
   userIsAuthenticated: () => Promise<boolean>
 }
 
@@ -80,10 +81,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  function logout() {
+    localStorage.clear()
+    setOrg(null)
+  }
+
   return (
     <AuthContext.Provider
       value={{
         signIn,
+        logout,
         userIsAuthenticated,
         org,
       }}

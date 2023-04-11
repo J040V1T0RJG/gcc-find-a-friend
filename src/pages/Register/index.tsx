@@ -65,6 +65,7 @@ export function Register() {
       alert(`O seu registo foi concluído com sucesso.`)
       navigate('/login')
     } catch (error: any) {
+      console.error(error)
       reset()
       alert(`Error: ${error.response.data}`)
     }

@@ -129,6 +129,10 @@ export const Form = styled.form`
     }
   }
 
+  span {
+    color: red;
+  }
+
   input,
   textarea,
   select {

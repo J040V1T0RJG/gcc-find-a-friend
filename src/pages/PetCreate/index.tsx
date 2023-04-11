@@ -21,6 +21,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
 import { useCallback, useContext, useEffect } from 'react'
 import { AuthContext } from '@/contexts/AuthContext'
+import { api } from '@/libs/axios'
 
 const ageOptions = [
   {
@@ -132,7 +133,6 @@ const petCreationDataSchema = z.object({
       for (const key in files) {
         if (Object.hasOwnProperty.call(files, key)) {
           const file = files[key]
-          console.log(file)
           if (file.size > MAX_FILE_SIZE) {
             isValid = false
           }
@@ -158,18 +158,28 @@ const petCreationDataSchema = z.object({
     ),
   adoptionRequirements: z
     .string()
-    .nonempty({ message: 'Os requisitos de adoção são obrigatórios' }),
+    .nonempty({ message: 'Os requisitos de adoção são obrigatórios' })
+    .transform((value) => {
+      return `['${value}']`
+    }),
 })
 
 type PetCreationDataType = z.infer<typeof petCreationDataSchema>
 
 export function PetCreate() {
   const navigate = useNavigate()
-  const { userIsAuthenticated } = useContext(AuthContext)
-  const { register, handleSubmit, getValues, watch, resetField } =
-    useForm<PetCreationDataType>({
-      resolver: zodResolver(petCreationDataSchema),
-    })
+  const { userIsAuthenticated, logout, org } = useContext(AuthContext)
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    resetField,
+    reset,
+    formState: { errors },
+  } = useForm<PetCreationDataType>({
+    resolver: zodResolver(petCreationDataSchema),
+  })
 
   const redirect = useCallback(async () => {
     const validToken = await userIsAuthenticated()
@@ -182,9 +192,41 @@ export function PetCreate() {
     redirect()
   }, [redirect])
 
-  function handleCreationPet(data: PetCreationDataType) {
+  async function handleCreationPet(data: PetCreationDataType) {
     console.log(data)
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${org?.token}`,
+      },
+    }
+    const formData = new FormData()
+
+    formData.append('name', data.name)
+    formData.append('age', data.age)
+    formData.append('size', data.size)
+    formData.append('description', data.description)
+    formData.append('energy', data.energy)
+    formData.append('independence', data.independence)
+    formData.append('type', data.type)
+    formData.append(
+      'adoptionRequirements',
+      JSON.stringify(data.adoptionRequirements),
+    )
+    Object.values(data.images).forEach((image) => {
+      formData.append('images', image)
+    })
+
+    try {
+      await api.post('/pets', formData, config)
+      alert('Pet cadastrado')
+      reset()
+    } catch (error) {
+      console.error(error)
+    }
   }
+
+  function addAdoptionRequirements() {}
 
   return (
     <Wrapper>
@@ -195,11 +237,11 @@ export function PetCreate() {
           </div>
           <div className="infoHeader">
             <p>
-              <strong>Seu cãozinho</strong>
+              <strong>{org?.org.nome}</strong>
               <br />
-              Rua do meio, 123 , Boa viagem, Recife - PE
+              {org?.org.address}
             </p>
-            <button>
+            <button onClick={() => logout()}>
               <img src={exitImage} alt="" />
             </button>
           </div>
@@ -211,11 +253,13 @@ export function PetCreate() {
             <InputWrapper>
               <input type="text" {...register('name')} />
             </InputWrapper>
+            {errors.name && <span>{errors.name.message}</span>}
 
             <label htmlFor="description">Sobre</label>
             <InputWrapper className="textareaWrapper">
               <textarea {...register('description')} />
             </InputWrapper>
+            {errors.description && <span>{errors.description.message}</span>}
 
             <label htmlFor="age">Idade</label>
             <InputWrapper>
@@ -232,6 +276,7 @@ export function PetCreate() {
                 })}
               </select>
             </InputWrapper>
+            {errors.age && <span>{errors.age.message}</span>}
 
             <label htmlFor="size">Porte</label>
             <InputWrapper>
@@ -248,6 +293,7 @@ export function PetCreate() {
                 })}
               </select>
             </InputWrapper>
+            {errors.size && <span>{errors.size.message}</span>}
 
             <label htmlFor="energy">Nível de energia</label>
             <InputWrapper>
@@ -264,6 +310,7 @@ export function PetCreate() {
                 })}
               </select>
             </InputWrapper>
+            {errors.energy && <span>{errors.energy.message}</span>}
 
             <label htmlFor="independence">Nível de independência</label>
             <InputWrapper>
@@ -280,6 +327,7 @@ export function PetCreate() {
                 })}
               </select>
             </InputWrapper>
+            {errors.independence && <span>{errors.independence.message}</span>}
 
             <label htmlFor="type">Raça</label>
             <InputWrapper>
@@ -296,6 +344,7 @@ export function PetCreate() {
                 })}
               </select>
             </InputWrapper>
+            {errors.type && <span>{errors.type.message}</span>}
 
             <label htmlFor="">Fotos</label>
             <FileWrapper>
@@ -313,6 +362,7 @@ export function PetCreate() {
                   <p>Arraste e solte o arquivo</p>
                 </div>
               </label>
+              {errors.images && <span>{errors.images.message}</span>}
 
               {watch('images') &&
                 Object.values(getValues('images')).map((file) => {
@@ -344,8 +394,11 @@ export function PetCreate() {
             <InputWrapper>
               <input type="text" {...register('adoptionRequirements')} />
             </InputWrapper>
+            {errors.adoptionRequirements && (
+              <span>{errors.adoptionRequirements.message}</span>
+            )}
 
-            <div className="addFile" onClick={() => {}}>
+            <div className="addFile" onClick={() => addAdoptionRequirements()}>
               <img src={plusImage} alt="" />
             </div>
 
